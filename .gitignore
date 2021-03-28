@@ -2,3 +2,7 @@ nohup.out
 index_original.js
 node_modules/
 node_index.out
+eCLI/
+connectionString.txt
+out*
+result/
