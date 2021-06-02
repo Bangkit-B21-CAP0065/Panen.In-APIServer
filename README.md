@@ -26,7 +26,7 @@ This should showed up on your terminal.<br>
 ![Run](/README/run.png)
 
 6. Test the server by accessing `/api/test`. For example, if you are using it on localhost, try to open `localhost/api/test` on your browser. You could also use the local ip, showed previously, to access it from your local network.<br><br>
-This should showed up:
+This should showed up:<br><br>
 ![Access](/README/api_test.png)
 
 ## Documentation
