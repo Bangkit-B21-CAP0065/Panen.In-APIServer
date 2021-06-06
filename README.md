@@ -17,16 +17,20 @@ npm install
 python3 -m pip install --upgrade pip
 python3 -m pip install -r ./requirement.txt
 ```
-5. Run the server. Linux need root access to open well-known ports.
-```
-sudo node index
-```
-Simply use `node index` on Windows.<br><br>
-This should showed up on your terminal.<br>
-![Run](/README/run.png)
+5. Run the server.
+  - Linux need root access to open well-known ports:
+  ```
+  sudo node index
+  ```
+  - Windows:
+  ```
+  node index
+ ```
+- This should showed up on your terminal.<br><br>
+ ![Run](/README/run.png)
 
 6. Test the server by accessing `/api/test`. For example, if you are using it on localhost, try to open `localhost/api/test` on your browser. You could also use the local ip, showed previously, to access it from your local network.<br><br>
-This should showed up:<br><br>
+- This should showed up:<br><br>
 ![Access](/README/api_test.png)
 
 ## Documentation
