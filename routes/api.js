@@ -16,8 +16,8 @@ router.get('/test', function (req, res, next) {
 
 // panen
 router.get('/panen', function (req, res, next) {
-  console.log('get /panen', req.query)
-
+  console.log('get /panen', req.query);
+  var dataToSend;
   var python = spawn('python', ['../Panen.In-ML-Notebook/crop/crop.py', req.query.bulan, req.query.kota, req.query.crop])
   python.stdout.on('data', function (data) {
     console.log('Pipe data from python script ...');
