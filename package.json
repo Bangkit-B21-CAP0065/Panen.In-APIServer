@@ -1,0 +1,24 @@
+{
+  "name": "panen.in_apiserver",
+  "version": "1.0.0",
+  "description": "API Server.",
+  "main": "index.js",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bangkit-B21-CAP0065/Panen.in_APIserver.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bangkit-B21-CAP0065/Panen.in_APIserver/issues"
+  },
+  "homepage": "https://github.com/Bangkit-B21-CAP0065/Panen.in_APIserver#readme"
+}
