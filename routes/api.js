@@ -24,36 +24,40 @@ router.get('/panen', function (req, res, next) {
 
 router.get('/harga', function (req, res, next) {
   console.log('get /harga', req.query);
-  var result  = [];
-  var path = req.query.kota + "_" + req.query.crop + ".csv";
-  var bucket_path = "gs://panenin/" + path;
-  console.log(bucket_path);
-  var fetch =  spawn('gsutil', ['cp', bucket_path, '.'])
-  fetch.on('exit', () => {
-    console.log("fecthing bucket done");
-    if (fs.existsSync(path)) {
-      console.log("file exist");
-      fs.createReadStream(path)
-      .pipe(csv())
-      .on('data', (row) => {
-        if (typeof req.query.tahun == "undefined") {
-          result.push(row);
-          console.log(row);
-        } else {
-          if (row['tahun'] == req.query.tahun ) {
+  if (typeof req.query.tahun == "undefined" || typeof req.query.kota == "undefined") {
+    res.status(422).send({error: "Wilayah/crop tidak ditemukan"});
+  } else {
+    var result  = [];
+    var path = req.query.kota + "_" + req.query.crop + ".csv";
+    var bucket_path = "gs://panenin/" + path;
+    console.log(bucket_path);
+    var fetch =  spawn('gsutil', ['cp', bucket_path, '.'])
+    fetch.on('exit', () => {
+      console.log("fecthing bucket done");
+      if (fs.existsSync(path)) {
+        console.log("file exist");
+        fs.createReadStream(path)
+        .pipe(csv())
+        .on('data', (row) => {
+          if (typeof req.query.tahun == "undefined") {
             result.push(row);
             console.log(row);
-          }
-        };
-      })
-      .on('end', () => {
-        res.send(result);
-      });
-    } else {
-      console.log("file does not exists");
-      res.status(422).send({error: "Wilayah/crop tidak ditemukan"});
-    }
-  });
+          } else {
+            if (row['tahun'] == req.query.tahun ) {
+              result.push(row);
+              console.log(row);
+            }
+          };
+        })
+        .on('end', () => {
+          res.send(result);
+        });
+      } else {
+        console.log("file does not exists");
+        res.status(422).send({error: "Wilayah/crop tidak ditemukan"});
+      }
+    });
+  }
 });
 ////////////////////
 
