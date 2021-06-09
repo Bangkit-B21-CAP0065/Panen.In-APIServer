@@ -17,7 +17,18 @@ router.get('/test', function (req, res, next) {
 // panen
 router.get('/panen', function (req, res, next) {
   console.log('get /panen', req.query)
-  res.send([1.1, 1.2, 1.3, 1.4, 1.9]);
+
+  var python = spawn('python', ['../Panen.In-ML-Notebook/crop/crop.py', req.query.bulan, req.query.kota, req.query.crop])
+  python.stdout.on('data', function (data) {
+    console.log('Pipe data from python script ...');
+    dataToSend = data.toString();
+  });
+
+  python.on('close', (code) => {
+    console.log(`child process close all stdio with code ${code}`);
+    // send data to browse
+    res.send(dataToSend)
+  });
 });
 
 
