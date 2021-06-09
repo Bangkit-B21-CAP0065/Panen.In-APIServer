@@ -24,7 +24,7 @@ router.get('/panen', function (req, res, next) {
 
 router.get('/harga', function (req, res, next) {
   console.log('get /harga', req.query);
-  if (typeof req.query.tahun == "undefined" || typeof req.query.kota == "undefined") {
+  if (typeof req.query.crop == "undefined" || typeof req.query.kota == "undefined") {
     res.status(422).send({error: "Wilayah/crop tidak ditemukan"});
   } else {
     var result  = [];
